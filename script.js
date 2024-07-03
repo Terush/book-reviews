@@ -1,35 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const titleInput = document.getElementById('title');
-    const authorInput = document.getElementById('author');
-    const titleSuggestions = document.getElementById('title-suggestions');
-    let selectedBook = null;
-
-    titleInput.addEventListener('input', function() {
-        const query = titleInput.value;
-        if (query.length > 2) {
-            fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}`)
-                .then(response => response.json())
-                .then(data => {
-                    const works = data.docs;
-                    titleSuggestions.innerHTML = '';
-                    works.forEach(work => {
-                        const suggestionItem = document.createElement('div');
-                        suggestionItem.className = 'p-2 cursor-pointer hover:bg-gray-200';
-                        suggestionItem.textContent = `${work.title} by ${work.author_name ? work.author_name.join(', ') : 'Unknown'}`;
-                        suggestionItem.addEventListener('click', () => {
-                            titleInput.value = work.title;
-                            authorInput.value = work.author_name ? work.author_name.join(', ') : 'Unknown';
-                            titleSuggestions.innerHTML = '';
-                            selectedBook = work;
-                        });
-                        titleSuggestions.appendChild(suggestionItem);
-                    });
-                });
-        } else {
-            titleSuggestions.innerHTML = '';
-        }
-    });
-
     document.getElementById('review-form').addEventListener('submit', function(event) {
         event.preventDefault();
         let valid = true;
@@ -42,13 +11,15 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('rating-error').textContent = '';
 
         // Title validation
+        const titleInput = document.getElementById('title');
         const title = titleInput.value.trim();
-        if (title === '' || !selectedBook || selectedBook.title !== title) {
+        if (title === '') {
             valid = false;
-            document.getElementById('title-error').textContent = 'Please select a valid book title from the suggestions.';
+            document.getElementById('title-error').textContent = 'Title is required.';
         }
 
         // Author validation
+        const authorInput = document.getElementById('author');
         const author = authorInput.value.trim();
         if (author === '') {
             valid = false;
