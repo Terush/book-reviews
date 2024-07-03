@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     titleSuggestions.innerHTML = '';
                     works.forEach(work => {
                         const suggestionItem = document.createElement('div');
-                        suggestionItem.className = 'suggestion-item';
+                        suggestionItem.className = 'p-2 cursor-pointer hover:bg-gray-200';
                         suggestionItem.textContent = `${work.title} by ${work.author_name ? work.author_name.join(', ') : 'Unknown'}`;
                         suggestionItem.addEventListener('click', () => {
                             titleInput.value = work.title;
