@@ -1,1 +1,2 @@
 # book-reviews
+このコードは、Netlify Functionsを使って取得したレビューのデータをHTMLページに動的に表示するためのJavaScriptコードです。具体的には、ページのロードが完了したときに/netlify/functions/get-reviewsエンドポイントからデータを取得し、各レビューをページ内のreviews-containerというIDを持つ要素に追加する処理を行います。
