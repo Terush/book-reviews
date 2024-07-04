@@ -1,2 +1,6 @@
 # book-reviews
+fetch-reviews.js
 このコードは、Netlify Functionsを使って取得したレビューのデータをHTMLページに動的に表示するためのJavaScriptコードです。具体的には、ページのロードが完了したときに/netlify/functions/get-reviewsエンドポイントからデータを取得し、各レビューをページ内のreviews-containerというIDを持つ要素に追加する処理を行います。
+
+form-validation.js
+このコードは、フォームのバリデーションを行うJavaScriptコードです。ユーザーがフォームを送信する際に、各入力フィールドが正しく入力されているかをチェックし、不足している場合はエラーメッセージを表示します。全てのフィールドが正しく入力されている場合のみ、フォームを送信します。
